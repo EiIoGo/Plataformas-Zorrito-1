@@ -6,6 +6,7 @@ public class PickUpItem : MonoBehaviour
 {
     [SerializeField] int value;
     [SerializeField] GameObject fxFeedback;
+    public AudioClip gemSFX;
 
     // Start is called before the first frame update
     void Start()
@@ -31,5 +32,7 @@ public class PickUpItem : MonoBehaviour
     {
         Destroy(gameObject);
         Instantiate(fxFeedback,gameObject.transform.position,Quaternion.identity);
+        GameManager.instance.score += value;
+        SoundManager.instance.PlaySound(gemSFX);
     }    
 }

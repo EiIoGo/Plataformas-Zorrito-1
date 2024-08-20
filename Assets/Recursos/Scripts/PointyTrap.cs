@@ -6,6 +6,7 @@ public class PointyTrap : MonoBehaviour
 {
     [SerializeField] int damage;
     [SerializeField] GameObject fxFeedback;
+    public AudioClip damageSFX;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,8 @@ public class PointyTrap : MonoBehaviour
     void PickedUpBehavior()
     {
         Instantiate(fxFeedback, gameObject.transform.position, Quaternion.identity);
+        GameManager.instance.health -= damage;
+        SoundManager.instance.PlaySound(damageSFX);
     }
 
     void AffectPlayer(GameObject playerGO)
